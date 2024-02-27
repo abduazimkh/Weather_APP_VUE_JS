@@ -1,0 +1,25 @@
+:root{
+  --pl-color: #fff;
+  --pd-color: #000;
+  --ps-color: #238C63;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: sans-serif;
+  color: var(--pl-color);
+  background-color: var(--ps-color);
+}
+
+select{
+  border: none;
+  outline: none;
+  height: 40px;
+  border-radius: 20px;
+  padding: 0 1rem;
+}
