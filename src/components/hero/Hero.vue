@@ -1,5 +1,15 @@
 <script>
+
+
+
+
 export default {
+  data(){
+    return {
+      xValues: [100,200,300,400,500,600,700,800,900,1000]
+
+    }
+  },
   mounted(){
     // console.log(this.$store.state.data);
   },
@@ -22,6 +32,57 @@ export default {
           return "Sunday"
       }
     },
+  },
+  // data: () => ({
+  //   options: {
+  //     chart: {
+  //       id: 'vuechart-example'
+  //     },
+  //     xaxis: {
+  //       categories: [
+  //        "Jan",
+  //        "Feb",
+  //        "Mar",
+  //        "Apr",
+  //        "May",
+  //        "Jun",
+  //        "Jul",
+  //        "Aug",
+  //        "Sep",
+  //        "Oct",
+  //        "Nov",
+  //        "Dec"
+  //       ]
+  //     }
+  //   },
+  //   series: [{
+  //     name: 'series-1',
+  //     data: [55, 62, 89, 66, 98, 72, 101, 75, 94, 120, 117, 139]
+  //   }]
+  // })
+  a: () => {
+    new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{ 
+      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+      borderColor: "red",
+      fill: false
+    }, { 
+      data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+      borderColor: "green",
+      fill: false
+    }, { 
+      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+      borderColor: "blue",
+      fill: false
+    }]
+  },
+  options: {
+    legend: {display: false}
+  }
+});
   }
 }
 </script>
@@ -58,9 +119,28 @@ export default {
     <div class="last-item">
 
       <div class="map">
+        <h2>{{ $store.state.data.location?.region }}, {{ $store.state.data.location?.country }}</h2>
+
         <iframe id="map" :src="'https://maps.google.com/maps?q='+ $store.state.data?.location?.name + '%20Dates%10Products&amp;t=&amp;z=12&amp&output=embed'" width=100% height="250" allowfullscreen frameborder="0"></iframe>
       </div>
       
+      <div class="cart-js">
+        <canvas id="myChart" style="width:100%;"></canvas>
+        <!-- <div>
+          <apexchart 
+            width="500" type="bar" 
+            :options="options" :series="series">
+          </apexchart>  
+      </div> -->
+      </div>
+
+      <div class="day" >
+        <div v-for="day in $store.state.data?.forecast?.forecastday">
+          <h4>{{identifyTheWeekDay(+new Date(day.date).getDay()).slice(0, 3).toUpperCase()}}</h4>
+          <img  :src="day.day.condition.icon"/>
+          <p>{{day.day.avgtemp_c}}°</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -121,6 +201,28 @@ export default {
         box-shadow: 0 0 30px 5px rgb(151, 175, 255);
       }
     }
+  }
 
+  .map{
+    color: #333;
+    background-color: #fff;
+    padding: 1rem;
+    h2{
+      margin-bottom: 1rem;
+    }
+  }
+
+  .day{
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff;
+    margin: 1rem 0;
+    padding: 1rem 1rem;
+    div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 150px;
+    }
   }
 </style>
