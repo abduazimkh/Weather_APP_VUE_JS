@@ -5,28 +5,24 @@
   <aside class="sidebar">
     <ul class="sidebar-list">
       <li>
-        <i>DD</i>
-        <span>home</span>
+        <router-link to="/">
+          <i>H</i>
+          <span>home</span>
+        </router-link>
       </li>
 
       <li>
-        <i>DD</i>
-        <span>home</span>
+        <router-link to="/a">
+          <i>A</i>
+          <span>A</span>
+        </router-link>
       </li>
 
       <li>
-        <i>DD</i>
-        <span>home</span>
-      </li>
-
-      <li>
-        <i>DD</i>
-        <span>home</span>
-      </li>
-      
-      <li>
-        <i>DD</i>
-        <span>home</span>
+        <router-link to="/c">
+          <i>C</i>
+          <span>C</span>
+        </router-link>
       </li>
     </ul>
   </aside>
@@ -34,7 +30,7 @@
 
 <style lang="scss">
 .sidebar{
-  background-color: dodgerblue;
+  background-color: #ffffff5e;
   height: 100vh;
   padding: 2rem;
 }
@@ -43,7 +39,10 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  li{
+  li, a{
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
     i{
       display: flex;
       align-items: center;
@@ -51,7 +50,7 @@
       border-radius: 50%;
       width: 40px;
       height: 40px;
-      background-color: red;
+      background-color: green;
     }
     display: flex;
     align-items: center;

@@ -1,4 +1,6 @@
 <script>
+  import apexcharts from "apexcharts"
+
 export default {
   mounted(){
     // console.log(this.$store.state.data);
@@ -22,7 +24,34 @@ export default {
           return "Sunday"
       }
     },
-  }
+  },
+  data: () => ({
+    options: {
+      chart: {
+        id: 'vuechart-example'
+      },
+      xaxis: {
+        categories: [
+         "Jan",
+         "Feb",
+         "Mar",
+         "Apr",
+         "May",
+         "Jun",
+         "Jul",
+         "Aug",
+         "Sep",
+         "Oct",
+         "Nov",
+         "Dec"
+        ]
+      }
+    },
+    series: [{
+      name: 'series-1',
+      data: [55, 62, 89, 66, 98, 72, 101, 75, 94, 120, 117, 139]
+    }]
+  })
 }
 </script>
 
@@ -58,9 +87,27 @@ export default {
     <div class="last-item">
 
       <div class="map">
+        <h2>{{ $store.state.data.location?.region }}, {{ $store.state.data.location?.country }}</h2>
+
         <iframe id="map" :src="'https://maps.google.com/maps?q='+ $store.state.data?.location?.name + '%20Dates%10Products&amp;t=&amp;z=12&amp&output=embed'" width=100% height="250" allowfullscreen frameborder="0"></iframe>
       </div>
       
+      <div class="cart-js">
+        <div>
+          <apexchart 
+            width="500" type="bar" 
+            :options="options" :series="series">
+          </apexchart>  
+      </div>
+      </div>
+
+      <div class="day" >
+        <div v-for="day in $store.state.data?.forecast?.forecastday">
+          <h4>{{identifyTheWeekDay(+new Date(day.date).getDay()).slice(0, 3).toUpperCase()}}</h4>
+          <img  :src="day.day.condition.icon"/>
+          <p>{{day.day.avgtemp_c}}°</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -121,6 +168,28 @@ export default {
         box-shadow: 0 0 30px 5px rgb(151, 175, 255);
       }
     }
+  }
 
+  .map{
+    color: #333;
+    background-color: #fff;
+    padding: 1rem;
+    h2{
+      margin-bottom: 1rem;
+    }
+  }
+
+  .day{
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff;
+    margin: 1rem 0;
+    padding: 1rem 1rem;
+    div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 150px;
+    }
   }
 </style>

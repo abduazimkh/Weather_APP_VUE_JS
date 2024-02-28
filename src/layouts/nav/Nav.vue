@@ -29,7 +29,7 @@
   <div class="navigation">
     <nav>
       <form @submit="e => e.preventDefault()">
-        <input v-model="inputValue" type="text" placeholder="Search city...">
+        <input v-model="inputValue" type="text" placeholder="Search citys or countries ...">
         <button>search</button>
       </form>
       <button>Settings</button>
@@ -66,7 +66,7 @@
           height: 100%;
           width: 70px;
           border: none;
-          background-color: dodgerblue;
+          background-color: #008f00;
           color: #fff;
           font-size: 1rem;
           display: flex;
@@ -78,7 +78,7 @@
         height: 40px;
         width: 100px;
         border: none;
-        background-color: dodgerblue;
+        background-color: #008f00;
         color: #fff;
         font-size: 1rem;
         display: flex;
