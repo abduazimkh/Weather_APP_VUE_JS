@@ -1,7 +1,15 @@
 <script>
-  import apexcharts from "apexcharts"
+
+
+
 
 export default {
+  data(){
+    return {
+      xValues: [100,200,300,400,500,600,700,800,900,1000]
+
+    }
+  },
   mounted(){
     // console.log(this.$store.state.data);
   },
@@ -25,33 +33,57 @@ export default {
       }
     },
   },
-  data: () => ({
-    options: {
-      chart: {
-        id: 'vuechart-example'
-      },
-      xaxis: {
-        categories: [
-         "Jan",
-         "Feb",
-         "Mar",
-         "Apr",
-         "May",
-         "Jun",
-         "Jul",
-         "Aug",
-         "Sep",
-         "Oct",
-         "Nov",
-         "Dec"
-        ]
-      }
-    },
-    series: [{
-      name: 'series-1',
-      data: [55, 62, 89, 66, 98, 72, 101, 75, 94, 120, 117, 139]
+  // data: () => ({
+  //   options: {
+  //     chart: {
+  //       id: 'vuechart-example'
+  //     },
+  //     xaxis: {
+  //       categories: [
+  //        "Jan",
+  //        "Feb",
+  //        "Mar",
+  //        "Apr",
+  //        "May",
+  //        "Jun",
+  //        "Jul",
+  //        "Aug",
+  //        "Sep",
+  //        "Oct",
+  //        "Nov",
+  //        "Dec"
+  //       ]
+  //     }
+  //   },
+  //   series: [{
+  //     name: 'series-1',
+  //     data: [55, 62, 89, 66, 98, 72, 101, 75, 94, 120, 117, 139]
+  //   }]
+  // })
+  a: () => {
+    new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{ 
+      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+      borderColor: "red",
+      fill: false
+    }, { 
+      data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+      borderColor: "green",
+      fill: false
+    }, { 
+      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+      borderColor: "blue",
+      fill: false
     }]
-  })
+  },
+  options: {
+    legend: {display: false}
+  }
+});
+  }
 }
 </script>
 
@@ -93,12 +125,13 @@ export default {
       </div>
       
       <div class="cart-js">
-        <div>
+        <canvas id="myChart" style="width:100%;"></canvas>
+        <!-- <div>
           <apexchart 
             width="500" type="bar" 
             :options="options" :series="series">
           </apexchart>  
-      </div>
+      </div> -->
       </div>
 
       <div class="day" >
