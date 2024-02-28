@@ -1,9 +1,12 @@
 <script>
   import {RouterView} from "vue-router";
   import Sidebar from "./layouts/sidebar/Sidebar.vue";
+  import Modal from "./utils/Modal.vue";
+
   export default {
     components: {
-      Sidebar
+      Sidebar,
+      Modal
     }
   }
 </script>
@@ -13,6 +16,7 @@
     <Sidebar/>
     <RouterView/>
   </div>
+  <Modal/>
 </template>
 
 <style lang="scss">
